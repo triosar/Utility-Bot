@@ -84,33 +84,53 @@ async def say(ctx,*args):
 
 @bot.command()
 async def bloxsearch(ctx,*args):
-
   baseURL = "https://api.blox.link/v1/user/"
   discID = args[0] # the discord id provided
   discID = str(discID)
   reqURL = baseURL + discID
-
   r = requests.get(reqURL)
   r = r.json() # make it accessible as a dict
-
   if r["status"] == "error": # if the request failed
     errorText = r["error"]
-    await ctx.send("This command failed.\nError reason is:")
+    await ctx.send("The Bloxlink lookup failed.\nError reason is:")
     toSend = "`"+errorText+"`"
     await ctx.send(toSend)
   else:
     link = "https://www.roblox.com/users/"+r["primaryAccount"]+"/profile"
-
     embedVar = discord.Embed(title="Bloxlink Lookup", description="",color=000000)
-    
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
-    RS = os.getenv('ROBLOSECURITY')
-    roblox = Client(RS)
+    roblox = Client()
     user = await roblox.get_user(int(r["primaryAccount"]))
     currentName = user.name
     embedVar.add_field(name="Username", value=currentName, inline=False)
     embedVar.add_field(name="Profile Link", value=link, inline=False)
     await ctx.send(embed=embedVar)
+#########################################################
+
+  baseURL = "https://verify.eryn.io/api/user/"
+  discID = args[0] # the discord id provided
+  discID = str(discID)
+  reqURL = baseURL + discID
+  r = requests.get(reqURL)
+  r = r.json() # make it accessible as a dict
+  if r["status"] == "error": # if the request failed
+    errorText = r["error"]
+    await ctx.send("The Rover lookup failed.\nError reason is:")
+    toSend = "`"+errorText+"`"
+    await ctx.send(toSend)
+  else:
+    link = "https://www.roblox.com/users/"+r["primaryAccount"]+"/profile"
+    embedVar = discord.Embed(title="Rover Lookup", description="",color=000000)
+    embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
+    roblox = Client()
+    user = await roblox.get_user(int(r["primaryAccount"]))
+    currentName = user.name
+    embedVar.add_field(name="Username", value=currentName, inline=False)
+    embedVar.add_field(name="Profile Link", value=link, inline=False)
+    await ctx.send(embed=embedVar)
+
+
+
 
 @bot.command()
 async def eval(ctx, *, code):
