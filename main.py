@@ -27,7 +27,7 @@ slist = [] #server objects
 blacklist = [] # bot blacklist
 
 intents = discord.Intents().all()
-bot = commands.Bot(command_prefix='c>',intents=intents)
+bot = commands.Bot(command_prefix='>',intents=intents)
 
 logging.basicConfig(format='%(filename)s: %(message)s',level=logging.INFO)
 

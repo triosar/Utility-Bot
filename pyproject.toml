@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "repl_python3_Utility-Bot"
+version = "0.1.0"
+description = ""
+authors = ["infinitypupper <<>>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.7.4"
+discord = "^1.7.3"
+humanfriendly = "^10.0"
+python-dotenv = "^0.19.1"
+replit = "^3.2.4"
+trello = "^0.9.7"
+ro-py = "^1.2.0"
+Flask = "^2.0.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
