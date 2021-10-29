@@ -100,11 +100,7 @@ async def bloxsearch(ctx,*args):
     embedVar = discord.Embed(title="Bloxlink Lookup", description="",color=000000)
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
     roblox = Client()
-    try:
-      user = await roblox.get_user(int(r["primaryAccount"]))
-    except:
-      await ctx.send("Boblox hecked up :(")
-      return
+    user = await roblox.get_user(int(r["primaryAccount"]))
     currentName = user.name
     embedVar.add_field(name="Username", value=currentName, inline=False)
     embedVar.add_field(name="Profile Link", value=link, inline=False)
@@ -127,11 +123,7 @@ async def bloxsearch(ctx,*args):
     embedVar = discord.Embed(title="Rover Lookup", description="",color=0xBD222A)
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
     roblox = Client()
-    try:
-      user = await roblox.get_user(int(r["primaryAccount"]))
-    except:
-      await ctx.send("Boblox hecked up :(")
-      return
+    user = await roblox.get_user(int(r["robloxId"]))
     currentName = user.name
     embedVar.add_field(name="Username", value=currentName, inline=False)
     embedVar.add_field(name="Profile Link", value=link, inline=False)
