@@ -81,7 +81,7 @@ async def say(ctx,*args):
     return
   await ctx.send(' '.join(args))
   await ctx.message.delete()
-  
+
 @bot.command()
 async def bloxsearch(ctx,*args):
   baseURL = "https://api.blox.link/v1/user/"
