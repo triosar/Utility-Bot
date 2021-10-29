@@ -119,8 +119,8 @@ async def bloxsearch(ctx,*args):
     toSend = "`"+errorText+"`"
     await ctx.send(toSend)
   else:
-    link = "https://www.roblox.com/users/"+r["robloxId"]+"/profile"
-    embedVar = discord.Embed(title="Rover Lookup", description="",color=000000)
+    link = "https://www.roblox.com/users/"+str(r["robloxId"])+"/profile"
+    embedVar = discord.Embed(title="Rover Lookup", description="",color=0xBD222A)
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
     roblox = Client()
     user = await roblox.get_user(int(r["robloxId"]))
