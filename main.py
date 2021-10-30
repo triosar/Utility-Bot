@@ -29,7 +29,7 @@ blacklist = [] # bot blacklist
 intents = discord.Intents().all()
 bot = commands.Bot(command_prefix='>',intents=intents)
 
-logging.basicConfig(format='%(filename)s: %(message)s',level=logging.INFO)
+logging.basicConfig(filename='log.txt', format='%(filename)s: %(message)s',level=logging.ERROR)
 
 load_dotenv()
 DISCTOKEN = os.getenv('DISCORD_TOKEN')
@@ -37,6 +37,17 @@ DISCTOKEN = os.getenv('DISCORD_TOKEN')
 #TRELLO_APP_KEY = os.getenv('TRELLO_APP_KEY') # not needed
 
 # bot function definitions
+
+async def checkQ():
+  while True:
+    await asyncio.sleep(1)
+    fileq = open("test.log","r")
+    for x in fileq:
+      toSend = "```py\n"+x+"```"
+      bot.loop.create_task((bot.get_channel(903626137001918484)).send(toSend))
+    fileq.close()
+    open('log.txt', 'w').close()
+
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
