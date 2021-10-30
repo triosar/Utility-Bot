@@ -84,7 +84,7 @@ async def say(ctx,*args):
   
 @bot.command()
 async def bloxsearch(ctx,*args):
-#initiate bloxlink searc
+#initiate bloxlink search
   baseURL = "https://api.blox.link/v1/user/"
   discID = args[0] # the discord id provided
   discID = str(discID)
