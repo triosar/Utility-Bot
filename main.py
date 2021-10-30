@@ -1,11 +1,11 @@
 import requests
 import os
-from ro_py import users
-from ro_py.users import User
+#from ro_py import users
+#from ro_py.users import User
 import discord
 from dotenv import load_dotenv
 import keep_alive
-import random
+#import random
 import time
 from humanfriendly import format_timespan
 from discord.ext import commands
@@ -14,12 +14,12 @@ import io
 import contextlib
 from discord.utils import get
 from discord import Webhook, AsyncWebhookAdapter
-import aiohttp
+#import aiohttp
 import logging
 from trello import TrelloApi
 import asyncio
 from ro_py import Client
-import traceback
+#import traceback
 import logging
 
 serverlist = [] # server names
