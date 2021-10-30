@@ -163,5 +163,7 @@ async def eval(ctx, *, code):
         return await ctx.send(f"```{e.__class__.__name__}: {e}```")
     await ctx.send(f'```{str_obj.getvalue()}```')
 
+
+
 keep_alive.keep_alive()
 bot.run(DISCTOKEN)
