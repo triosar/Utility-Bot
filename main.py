@@ -61,6 +61,7 @@ async def on_ready():
       serverlist.append(str(server))
       slist.append(server)
       #await server.leave() #activate this to leave all servers
+    await checkQ()
 
 @bot.event
 async def on_message(message):
