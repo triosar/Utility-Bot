@@ -51,7 +51,7 @@ async def checkQ():
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="you type! | Prefix is 'c>'!"))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="some flies. | Prefix is '>'!"))
     channel = bot.get_channel(903626137001918484)
     embedVar2 = discord.Embed(title="Bot connected to Discord",description=f'Bot successfully connected to Discord at {time.asctime()}.',color=0x0090ff)
     embedVar2.set_footer(text="Hello world | FrogBot")
