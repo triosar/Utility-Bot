@@ -41,7 +41,7 @@ DISCTOKEN = os.getenv('DISCORD_TOKEN')
 async def checkQ():
   while True:
     await asyncio.sleep(1)
-    fileq = open("test.log","r")
+    fileq = open("log.txt","r")
     for x in fileq:
       toSend = "```py\n"+x+"```"
       bot.loop.create_task((bot.get_channel(903626137001918484)).send(toSend))
