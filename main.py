@@ -84,6 +84,7 @@ async def say(ctx,*args):
   
 @bot.command()
 async def bloxsearch(ctx,*args):
+#initiate bloxlink searc
   baseURL = "https://api.blox.link/v1/user/"
   discID = args[0] # the discord id provided
   discID = str(discID)
@@ -110,7 +111,7 @@ async def bloxsearch(ctx,*args):
     embedVar.add_field(name="Profile Link", value=link, inline=False)
     await ctx.send(embed=embedVar)
 #########################################################
-
+#iniate rover search
   baseURL = "https://verify.eryn.io/api/user/"
   discID = args[0] # the discord id provided
   discID = str(discID)
@@ -136,9 +137,6 @@ async def bloxsearch(ctx,*args):
     embedVar.add_field(name="Username", value=currentName, inline=False)
     embedVar.add_field(name="Profile Link", value=link, inline=False)
     await ctx.send(embed=embedVar)
-
-
-
 
 @bot.command()
 async def eval(ctx, *, code):
