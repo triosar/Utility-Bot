@@ -141,7 +141,7 @@ async def bloxsearch(ctx,*args):
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
     roblox = Client()
     try:
-      user = await roblox.get_user(int(r["primaryAccount"]))
+      user = await roblox.get_user(int(r["robloxId"]))
     except:
       await ctx.send("Boblox hecked up :(")
       return
