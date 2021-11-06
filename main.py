@@ -4,7 +4,7 @@ import os
 #from ro_py.users import User
 import discord
 from dotenv import load_dotenv
-import keep_alive
+from keep_alive import *
 #import random
 import time
 from humanfriendly import format_timespan
@@ -21,6 +21,7 @@ import asyncio
 from ro_py import Client
 #import traceback
 import logging
+from flask import request
 
 serverlist = [] # server names
 slist = [] #server objects
@@ -35,6 +36,8 @@ load_dotenv()
 DISCTOKEN = os.getenv('DISCORD_TOKEN')
 #RS = os.getenv('ROBLOSECURITY') # not needed
 #TRELLO_APP_KEY = os.getenv('TRELLO_APP_KEY') # not needed
+
+TWwebhook = os.getenv('WEBHOOK')
 
 # bot function definitions
 
@@ -151,6 +154,19 @@ async def bloxsearch(ctx,*args):
     await ctx.send(embed=embedVar)
 
 @bot.command()
+async def postweb(ctx):
+  url = TWwebhook
+  data = {
+    "content" : "hi :)"
+  }
+  try:
+    result = requests.post(url, json = data)
+    await ctx.send("pass")
+  except:
+    await ctx.send("bonk")
+
+
+@bot.command()
 async def eval(ctx, *, code):
     if (ctx.message.author.id) != 314394344465498122:
       await ctx.send("Denied.")
@@ -163,7 +179,11 @@ async def eval(ctx, *, code):
         return await ctx.send(f"```{e.__class__.__name__}: {e}```")
     await ctx.send(f'```{str_obj.getvalue()}```')
 
+@app.route("/post", methods=['POST'])
+def posturl():
+  data = request.get_json()
+  result = requests.post(TWwebhook, json = data)
+  return
 
-
-keep_alive.keep_alive()
+keep_alive()
 bot.run(DISCTOKEN)
