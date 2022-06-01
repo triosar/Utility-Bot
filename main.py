@@ -46,7 +46,10 @@ async def checkQ():
     await asyncio.sleep(1)
     fileq = open("log.txt","r")
     for x in fileq:
-      toSend = "```py\n"+x+"```"
+      if x.startswith("System"):
+        toSend = x
+      else:
+        toSend = "```py\n"+x+"```"
       bot.loop.create_task((bot.get_channel(903626137001918484)).send(toSend))
     fileq.close()
     open('log.txt', 'w').close()
@@ -190,6 +193,6 @@ try:
   bot.run(DISCTOKEN)
 except:
     file = open("log.txt","a+")
-    file.write("Sys: Container had to restart because current container rate-limited.\n")
+    file.write("System: Container had to restart because current container rate-limited.<@314394344465498122> \n")
     file.close()
     os.system("kill 1")
