@@ -186,4 +186,10 @@ def posturl():
   return
 
 keep_alive()
-bot.run(DISCTOKEN)
+try:
+  bot.run(DISCTOKEN)
+except:
+    file = open("log.txt","a+")
+    file.write("Sys: Container had to restart because current container rate-limited.\n")
+    file.close()
+    os.system("kill 1")
