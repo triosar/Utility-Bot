@@ -100,8 +100,10 @@ async def say(ctx,*args):
   await ctx.send(' '.join(args))
   await ctx.message.delete()
   
+  
 @bot.command()
 async def bloxsearch(ctx,*args):
+  
 #initiate bloxlink search
   blox_key = os.getenv('BLOXKEY')
   baseURL = "https://v3.blox.link/developer/discord/"
@@ -116,20 +118,25 @@ async def bloxsearch(ctx,*args):
   if not r["success"]: # if the request failed
     await ctx.send("The Bloxlink lookup failed.")
   else:
-    link = "https://www.roblox.com/users/"+r["user"]["primaryAccount"]+"/profile"
-    embedVar = discord.Embed(title="Bloxlink Lookup", description="",color=000000)
-    embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
-    roblox = Client()
     try:
-      user = await roblox.get_user(int(r["user"]["primaryAccount"]))
+      link = "https://www.roblox.com/users/"+r["user"]["primaryAccount"]+"/profile"
+      embedVar = discord.Embed(title="Bloxlink Lookup", description="",color=000000)
+      embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
+      roblox = Client()
+      try:
+        user = await roblox.get_user(int(r["user"]["primaryAccount"]))
+      except:
+        await ctx.send("Boblox hecked up :(")
+        return
+      currentName = user.name
+      embedVar.add_field(name="Username", value=currentName, inline=False)
+      embedVar.add_field(name="Profile Link", value=link, inline=False)
+      await ctx.send(embed=embedVar)
     except:
-      await ctx.send("Boblox hecked up :(")
-      return
-    currentName = user.name
-    embedVar.add_field(name="Username", value=currentName, inline=False)
-    embedVar.add_field(name="Profile Link", value=link, inline=False)
-    await ctx.send(embed=embedVar)
+      await ctx.send("This user is not verified with Bloxlink")
+    
 #########################################################
+
 #iniate rover search
   baseURL = "https://verify.eryn.io/api/user/"
   discID = args[0] # the discord id provided
