@@ -103,24 +103,25 @@ async def say(ctx,*args):
 @bot.command()
 async def bloxsearch(ctx,*args):
 #initiate bloxlink search
-  baseURL = "https://api.blox.link/v1/user/"
+  blox_key = os.getenv('BLOXKEY')
+  baseURL = "https://v3.blox.link/developer/discord/"
   discID = args[0] # the discord id provided
   discID = str(discID)
   reqURL = baseURL + discID
-  r = requests.get(reqURL)
+  r = requests.get(reqURL,headers={"api-key":blox_key})
+  print(r)
   r = r.json() # make it accessible as a dict
-  if r["status"] == "error": # if the request failed
-    errorText = r["error"]
-    await ctx.send("The Bloxlink lookup failed.\nError reason is:")
-    toSend = "`"+errorText+"`"
-    await ctx.send(toSend)
+  print(r)
+  await ctx.send("Bloxlink JSON: "+str(r))
+  if not r["success"]: # if the request failed
+    await ctx.send("The Bloxlink lookup failed.")
   else:
-    link = "https://www.roblox.com/users/"+r["primaryAccount"]+"/profile"
+    link = "https://www.roblox.com/users/"+r["user"]["primaryAccount"]+"/profile"
     embedVar = discord.Embed(title="Bloxlink Lookup", description="",color=000000)
     embedVar.add_field(name="Discord User", value="<@"+str(discID)+">", inline=False)
     roblox = Client()
     try:
-      user = await roblox.get_user(int(r["primaryAccount"]))
+      user = await roblox.get_user(int(r["user"]["primaryAccount"]))
     except:
       await ctx.send("Boblox hecked up :(")
       return
@@ -136,6 +137,7 @@ async def bloxsearch(ctx,*args):
   reqURL = baseURL + discID
   r = requests.get(reqURL)
   r = r.json() # make it accessible as a dict
+  await ctx.send("Rover JSON: "+str(r))
   if r["status"] == "error": # if the request failed
     errorText = r["error"]
     await ctx.send("The Rover lookup failed.\nError reason is:")
