@@ -169,13 +169,15 @@ async def bloxsearch(ctx,*args):
 async def postweb(ctx):
   url = TWwebhook
   data = {
-    "content" : "hi :)"
+    "content" : "ALERT!!!! AMOGUS HAS BEEN DISCOVERED IN THE NOVA SECURITY TRAINING FACILITY!"
   }
   try:
     result = requests.post(url, json = data)
     await ctx.send("pass")
+    await ctx.send(str(result))
   except:
     await ctx.send("bonk")
+    await ctx.send(str(result))
 
 
 @bot.command()
